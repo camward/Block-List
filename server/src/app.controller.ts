@@ -1,6 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ApiOkResponse, ApiProperty } from "@nestjs/swagger";
+import { DbService } from "./db/db.service";
 
 class HelloWordDto {
   @ApiProperty()
@@ -9,13 +10,15 @@ class HelloWordDto {
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService, private dbService: DbService) {}
 
   @Get()
   @ApiOkResponse({
     type: HelloWordDto
   })
-  getHello(): HelloWordDto {
+  async getHello(): Promise<HelloWordDto> {
+    const users = await this.dbService.user.findMany({});
+    console.log(users);
     return { messages: this.appService.getHello() };
   }
 }
