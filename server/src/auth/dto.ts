@@ -25,13 +25,15 @@ export class SignInBodyDto {
 }
 
 export class GetSessionInfoDto {
-    @ApiProperty({
-        example: 123456
-    })
+    @ApiProperty()
     id: number;
 
-    @ApiProperty({
-        example: 'test@mail.ru'
-    })
+    @ApiProperty()
     email: string;
+
+    @ApiProperty()
+    iat: number;
+
+    @ApiProperty()
+    exp: number;
 }

@@ -1,10 +1,11 @@
-import {Body, Controller, Get, HttpCode, HttpStatus, Post, Res} from '@nestjs/common';
+import {Body, Controller, Get, HttpCode, HttpStatus, Post, Res, UseGuards} from '@nestjs/common';
 import {GetSessionInfoDto, SignInBodyDto, SignUpBodyDto} from "./dto";
 import {ApiCreatedResponse, ApiOkResponse} from "@nestjs/swagger";
 import {AuthService} from "./auth.service";
 import { CookieService } from "./cookie.service";
 import { Response } from 'express';
 import { AuthGuard } from "./auth.guard";
+import {SessionInfo} from "./session-info.decorator";
 
 @Controller('auth')
 export class AuthController {
@@ -37,5 +38,8 @@ export class AuthController {
     @ApiOkResponse({
         type: GetSessionInfoDto
     })
-    getSessionInfo() {}
+    @UseGuards(AuthGuard)
+    getSessionInfo(@SessionInfo() session: GetSessionInfoDto) {
+        return session;
+    }
 }
