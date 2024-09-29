@@ -4,6 +4,7 @@ import {ApiCreatedResponse, ApiOkResponse} from "@nestjs/swagger";
 import {AuthService} from "./auth.service";
 import { CookieService } from "./cookie.service";
 import { Response } from 'express';
+import { AuthGuard } from "./auth.guard";
 
 @Controller('auth')
 export class AuthController {
@@ -11,7 +12,7 @@ export class AuthController {
 
     @Post('sign-up')
     @ApiCreatedResponse()
-    async signUp(@Body body: SignUpBodyDto, @Res({ passthrough: true }) res: Response) {
+    async signUp(@Body() body: SignUpBodyDto, @Res({ passthrough: true }) res: Response) {
         const { accessToken } = await this.authService.signUp(body.email, body.password);
         this.cookieService.setCookie(res, accessToken);
     }
@@ -19,7 +20,7 @@ export class AuthController {
     @Post('sign-in')
     @ApiOkResponse()
     @HttpCode(HttpStatus.OK)
-    async signIn(@Body body: SignInBodyDto, @Res({ passthrough: true }) res: Response) {
+    async signIn(@Body() body: SignInBodyDto, @Res({ passthrough: true }) res: Response) {
         const { accessToken } = await this.authService.signIn(body.email, body.password);
         this.cookieService.setCookie(res, accessToken);
     }
@@ -27,7 +28,10 @@ export class AuthController {
     @Post('sign-out')
     @ApiOkResponse()
     @HttpCode(HttpStatus.OK)
-    signOut() {}
+    @UseGuards(AuthGuard)
+    signOut(@Res({ passthrough: true }) res: Response) {
+        this.cookieService.removeCookie(res);
+    }
 
     @Get('session')
     @ApiOkResponse({
