@@ -39,7 +39,7 @@ model BlockList {
 model BlockItem {
   id             Int @id @default(autoincrement())
   blockListId    Int
-  blockListOwner BlockList @relation(fields: [blockListId], references: [id])
+  blockList      BlockList @relation(fields: [blockListId], references: [id])
   type           BlockItemType
   data           String
   createdAt      DateTime @default(now())
