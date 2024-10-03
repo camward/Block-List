@@ -9,6 +9,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
       .setTitle('Block List')
+      .setDescription('The block list API description')
       .setVersion('1.0')
       .build();
   const document = SwaggerModule.createDocument(app, config);

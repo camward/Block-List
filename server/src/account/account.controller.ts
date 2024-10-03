@@ -1,17 +1,20 @@
 import {Body, Controller, Get, Patch, UseGuards} from '@nestjs/common';
-import {ApiOkResponse} from "@nestjs/swagger";
+import {ApiOkResponse, ApiOperation, ApiTags} from "@nestjs/swagger";
 import {AccountDto, PatchAccountDto} from "./dto";
 import {AccountService} from "./account.service";
 import {AuthGuard} from "../auth/auth.guard";
 import {SessionInfo} from "../auth/session-info.decorator";
 import {GetSessionInfoDto} from "../auth/dto";
 
+@ApiTags('Account')
 @Controller('account')
 @UseGuards(AuthGuard)
 export class AccountController {
-    constructor(private accountService: AccountService) {}
+    constructor(private accountService: AccountService) {
+    }
 
     @Get()
+    @ApiOperation({ summary: 'Получить данные' })
     @ApiOkResponse({
         type: AccountDto,
     })
@@ -20,6 +23,7 @@ export class AccountController {
     }
 
     @Patch()
+    @ApiOperation({ summary: 'Обновить данные' })
     @ApiOkResponse({
         type: AccountDto,
     })

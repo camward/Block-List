@@ -1,17 +1,24 @@
 import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Query, UseGuards} from '@nestjs/common';
 import {BlockListService} from "./block-list.service";
-import {ApiCreatedResponse, ApiOkResponse, ApiParam} from "@nestjs/swagger";
+import {
+    ApiCreatedResponse,
+    ApiOkResponse,
+    ApiOperation,
+    ApiTags
+} from "@nestjs/swagger";
 import {AddBlockItemDto, BlockItemDto, BlockListDto, BlockListQueryDto} from "./dto";
 import {AuthGuard} from "../auth/auth.guard";
 import {SessionInfo} from "../auth/session-info.decorator";
 import {GetSessionInfoDto} from "../auth/dto";
 
+@ApiTags('Block list')
 @Controller('block-list')
 @UseGuards(AuthGuard)
 export class BlockListController {
     constructor(private blockListService: BlockListService) {}
 
     @Get()
+    @ApiOperation({ summary: 'Получить все записи блокировок' })
     @ApiOkResponse({
         type: BlockListDto
     })
@@ -20,6 +27,7 @@ export class BlockListController {
     }
 
     @Post('item')
+    @ApiOperation({ summary: 'Добавить блокировку' })
     @ApiCreatedResponse({
         type: BlockItemDto
     })
@@ -28,6 +36,7 @@ export class BlockListController {
     }
 
     @Delete('item/:id')
+    @ApiOperation({ summary: 'Удалить блокировку' })
     @ApiOkResponse({
         type: BlockItemDto
     })
