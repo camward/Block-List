@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { BlockListController } from './block-list.controller';
 import { BlockListService } from './block-list.service';
-import {DbModule} from "../db/db.module";
+import { DbModule } from '../db/db.module';
 
 @Module({
   imports: [DbModule],
