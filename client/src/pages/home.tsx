@@ -6,6 +6,7 @@ import {UiSelectField} from "@/shared/ui/ui-select-field";
 import {UiLink} from "@/shared/ui/ui-link";
 import {UiSpinner} from "@/shared/ui/ui-spinner";
 import {UiHeader} from "@/shared/ui/ui-header";
+import {SignOutButton} from "@/features/auth";
 
 export default function HomePage() {
   const { data } = useQuery({
@@ -17,7 +18,12 @@ export default function HomePage() {
     <div
       className="items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20"
     >
-      <UiHeader right={(<div>E-mail: {data?.email}</div>)} />
+      <UiHeader right={(
+          <div>
+            E-mail: {data?.email}
+            <SignOutButton />
+          </div>
+      )} />
       <UiButton variant="primary">primary</UiButton>
       <UiButton variant="primary" disabled>disabled primary</UiButton>
       <UiButton variant="secondary">secondary</UiButton>
