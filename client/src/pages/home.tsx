@@ -1,5 +1,3 @@
-import {useQuery} from "@tanstack/react-query";
-import {authControllerGetSessionInfo} from "@/shared/api/generated";
 import {UiButton} from "@/shared/ui/ui-button";
 import {UiTextField} from "@/shared/ui/ui-text-field";
 import {UiSelectField} from "@/shared/ui/ui-select-field";
@@ -8,19 +6,13 @@ import {UiSpinner} from "@/shared/ui/ui-spinner";
 import {UiHeader} from "@/shared/ui/ui-header";
 import {SignOutButton} from "@/features/auth";
 
-export default function HomePage() {
-  const { data } = useQuery({
-    queryKey: ['session'],
-    queryFn: () => authControllerGetSessionInfo()
-  });
-
+export function HomePage() {
   return (
     <div
       className="items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20"
     >
       <UiHeader right={(
           <div>
-            E-mail: {data?.email}
             <SignOutButton />
           </div>
       )} />
