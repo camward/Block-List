@@ -1,40 +1,19 @@
-import {UiButton} from "@/shared/ui/ui-button";
-import {UiTextField} from "@/shared/ui/ui-text-field";
-import {UiSelectField} from "@/shared/ui/ui-select-field";
-import {UiLink} from "@/shared/ui/ui-link";
-import {UiSpinner} from "@/shared/ui/ui-spinner";
 import {UiHeader} from "@/shared/ui/ui-header";
-import {SignOutButton} from "@/features/auth";
+import {Profile} from "@/wifgets/profile";
+import {ToggleBlockingButton} from "@/features/toggle-blocking";
 
 export function HomePage() {
   return (
-    <div
-      className="items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20"
-    >
-      <UiHeader right={(
-          <div>
-            <SignOutButton />
+      <div className={`min-h-screen flex flex-col`}>
+          <UiHeader right={<Profile />} />
+          <div className="grid grid-cols-[200px_1fr]">
+              <aside className="px-5 pt-10">
+                  <ToggleBlockingButton />
+              </aside>
+              <main className="pt-10 px-5">
+                  Content
+              </main>
           </div>
-      )} />
-      <UiButton variant="primary">primary</UiButton>
-      <UiButton variant="primary" disabled>disabled primary</UiButton>
-      <UiButton variant="secondary">secondary</UiButton>
-      <UiButton variant="secondary" disabled>disabled secondary</UiButton>
-      <UiButton variant="outlined">outlined</UiButton>
-      <UiButton variant="outlined" disabled>disabled outlined</UiButton>
-      <UiTextField label="Input" inputProps={{placeholder: 'text'}} />
-      <UiTextField label="Input Error" error="Error text" inputProps={{placeholder: 'error'}} />
-      <UiSelectField
-          label="select"
-          options={[
-            { label: 'select 1', value: '1' },
-            { label: 'select 2', value: '2' },
-            { label: 'select 3', value: '3' },
-          ]}
-          error="Error text"
-      />
-      <UiLink href="#">Link</UiLink>
-      <UiSpinner className="text-teal-600 w-10 h-10" />
-    </div>
+      </div>
   );
 }
