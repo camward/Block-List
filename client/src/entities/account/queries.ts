@@ -1,31 +1,31 @@
 import {
-    accountControllerGetAccount,
-    accountControllerPatchAccount,
-} from "@/shared/api/generated";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+  accountControllerGetAccount,
+  accountControllerPatchAccount,
+} from '@/shared/api/generated';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-const accountKey = ["account"];
+const accountKey = ['account'];
 
 export function useAccountQuery() {
-    return useQuery({
-        queryKey: accountKey,
-        queryFn: accountControllerGetAccount,
-    });
+  return useQuery({
+    queryKey: accountKey,
+    queryFn: accountControllerGetAccount,
+  });
 }
 
 export function useUpdateAccountMutation() {
-    const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
-    return useMutation({
-        mutationFn: accountControllerPatchAccount,
-        onSuccess(data) {
-            queryClient.setQueryData(accountKey, data);
-        },
-        async onSettled() {
-            await queryClient.invalidateQueries( {
-                queryKey: accountKey,
-                refetchType: 'active',
-            });
-        },
-    });
+  return useMutation({
+    mutationFn: accountControllerPatchAccount,
+    onSuccess(data) {
+      queryClient.setQueryData(accountKey, data);
+    },
+    async onSettled() {
+      await queryClient.invalidateQueries({
+        queryKey: accountKey,
+        refetchType: 'active',
+      });
+    },
+  });
 }
