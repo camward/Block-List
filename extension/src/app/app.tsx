@@ -1,5 +1,9 @@
+import {AppProvider} from "@/app/app-provider";
+
 export function App() {
   return (
-    <div>App</div>
+      <AppProvider>
+        <div>App</div>
+      </AppProvider>
   )
 }
