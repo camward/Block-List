@@ -1,9 +1,10 @@
-import {AppProvider} from "@/app/app-provider";
+import { AppProvider } from "./app-provider";
+import { AppRouter } from "./app-router";
 
 export function App() {
-  return (
-      <AppProvider>
-        <div className="text-3xl font-bold underline">App</div>
-      </AppProvider>
-  )
+    return (
+        <AppProvider>
+            <AppRouter />
+        </AppProvider>
+    );
 }
