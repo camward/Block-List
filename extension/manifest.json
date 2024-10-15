@@ -3,6 +3,12 @@
   "name": "Block List",
   "description": "Plugin for blocking websites",
   "version": "1.0.0",
+  "icons": {
+    "16": "public/shield-16.png",
+    "32": "public/shield-32.png",
+    "48": "public/shield-48.png",
+    "128": "public/shield-128.png"
+  },
   "action": { "default_popup": "index.html" },
   "permissions": ["declarativeNetRequest", "alarms"],
   "host_permissions": ["<all_urls>"],

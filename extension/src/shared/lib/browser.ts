@@ -32,3 +32,21 @@ export const setBrowserInterval = async (
         }
     });
 };
+
+export const addInstallListener = (cb: () => Awaited<void>) => {
+    chrome.runtime.onInstalled.addListener(async ({ reason }) => {
+        if (reason !== "install") {
+            return;
+        }
+        await cb();
+    });
+};
+
+let currentIcon: string = "";
+
+export const setIcon = (url: string) => {
+    if (url !== currentIcon) {
+        currentIcon = url;
+        chrome.action.setIcon({ path: chrome.runtime.getURL(url) });
+    }
+};
