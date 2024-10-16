@@ -1,1 +1,1 @@
-export { startUpdateBlockRules } from "./start-update-block-rules";
+export { startUpdateBlockRules } from './start-update-block-rules';

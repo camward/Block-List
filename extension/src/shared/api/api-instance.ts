@@ -1,8 +1,8 @@
-const baseURL = "http://localhost:3000";
+import { BASE_SERVER_URL } from '@/shared/constants/config';
 
 class ApiError extends Error {
   constructor(public data: unknown) {
-    super("Api Error");
+    super('Api Error');
   }
 }
 
@@ -14,23 +14,23 @@ export const createInstance = async <T>({
   headers,
 }: {
   url: string;
-  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
   params?: Record<string, string>;
   headers?: HeadersInit;
   data?: BodyType<unknown>;
   responseType?: string;
 }): Promise<T> => {
   const response = await fetch(
-      `${baseURL}${url}` + new URLSearchParams(params),
-      {
-        method: method.toUpperCase(),
-        credentials: "include",
-        headers,
-        ...(data ? { body: JSON.stringify(data) } : {}),
-      },
+    `${BASE_SERVER_URL}${url}` + new URLSearchParams(params),
+    {
+      method: method.toUpperCase(),
+      credentials: 'include',
+      headers,
+      ...(data ? { body: JSON.stringify(data) } : {}),
+    },
   );
 
-  if (!response.status.toString().startsWith("2")) {
+  if (!response.status.toString().startsWith('2')) {
     throw new ApiError(response);
   }
 

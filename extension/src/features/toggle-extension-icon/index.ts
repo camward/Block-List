@@ -1,1 +1,1 @@
-export { startToggleExtensionIcon } from "./start-toggle-extension-icon";
+export { startToggleExtensionIcon } from './start-toggle-extension-icon';

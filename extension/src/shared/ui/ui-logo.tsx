@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 export function UiLogo({ className }: { className?: string }) {
   return (
-    <div className={clsx(className, 'flex items-center gap-2 text-xl')}>
+    <div className={clsx(className, 'flex items-center gap-2 text-base pb-2')}>
       <Shield className="w-12 h-12" />
       Блокировка сайтов
     </div>
