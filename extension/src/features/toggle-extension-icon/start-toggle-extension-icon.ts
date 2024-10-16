@@ -5,7 +5,7 @@ import {
 import { setBrowserInterval, setIcon } from "@/shared/lib/browser";
 
 export function startToggleExtensionIcon() {
-    setBrowserInterval("update-block-rules", 5 * 1000, async () => {
+    setBrowserInterval("update-block-rules", 3 * 1000, async () => {
         const isAuth = await authControllerGetSessionInfo().then(
             () => true,
             () => false,

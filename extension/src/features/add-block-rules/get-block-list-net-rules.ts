@@ -12,7 +12,7 @@ export async function getBlockListNetRules() {
     const blockList = await blockListControllerGetList();
 
     return blockList.items
-        .filter((item) => item.type === BlockItemDtoType.Website)
+        .filter((item) => item.type === BlockItemDtoType.Website || item.type === BlockItemDtoType.KeyWord)
         .map(
             (item): NetRule => ({
                 id: item.id,

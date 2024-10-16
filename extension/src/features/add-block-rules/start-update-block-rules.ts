@@ -6,7 +6,7 @@ import { setBrowserInterval, setNetRules } from "@/shared/lib/browser";
 import { getBlockListNetRules } from "./get-block-list-net-rules";
 
 export function startUpdateBlockRules() {
-    setBrowserInterval("update-block-rules", 5 * 1000, async () => {
+    setBrowserInterval("update-block-rules", 3 * 1000, async () => {
         const isAuth = await authControllerGetSessionInfo().then(
             () => true,
             () => false,
