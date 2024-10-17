@@ -17,10 +17,7 @@ async function bootstrap() {
 
   app.use(cookieParser());
   app.enableCors({
-    origin: [
-      'http://localhost:3001',
-      'chrome://extensions/?id=oimkihfgilbicejblclahklodkmcpbgj',
-    ],
+    origin: [process.env.CLIENT_URL || '', process.env.EXTENSION_URL || ''],
     credentials: true,
   });
   app.useGlobalPipes(new ValidationPipe());

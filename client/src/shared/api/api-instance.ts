@@ -1,7 +1,8 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import { BASE_SERVER_URL } from '@/shared/constants/config';
 
 export const apiInstance = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: BASE_SERVER_URL,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
